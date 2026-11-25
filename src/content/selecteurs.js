@@ -16,7 +16,12 @@ globalThis.FilterSelecteurs = {
    */
   ancreAnnonce: [
     'a[data-jk]',
-    '[data-jk]'
+    '[data-jk]',
+    // Repli : liens dont l'adresse contient l'identifiant d'annonce.
+    'a[href*="jk="]',
+    'a[href*="/viewjob"]',
+    'a[href*="/rc/clk"]',
+    'a[href*="/pagead/clk"]'
   ],
 
   /*
@@ -27,18 +32,26 @@ globalThis.FilterSelecteurs = {
     '#mosaic-provider-jobcards li',
     '[data-testid="slider_item"]',
     '.job_seen_beacon',
-    'li'
+    '[class*="cardOutline"]',
+    '[class*="job_seen_beacon"]',
+    'li',
+    'article'
   ],
 
   /* Éléments À L'INTÉRIEUR d'une carte. */
   titre: [
     'h2 [title]',
     'h2 a span',
-    'h2'
+    'h2',
+    '[id^="jobTitle"]',
+    'a[data-jk]',
+    'a[href*="jk="]'
   ],
   employeur: [
     '[data-testid="company-name"]',
-    '[data-testid="companyName"]'
+    '[data-testid="companyName"]',
+    '[data-testid*="company"]',
+    '[class*="companyName"]'
   ],
   extrait: [
     '[data-testid="jobsnippet_footer"]',

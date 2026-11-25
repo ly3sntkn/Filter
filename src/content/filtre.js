@@ -28,6 +28,8 @@
   let minuteurCompteur = null;
   let minuteurTraitement = null;
   let bandeauAffiche = false;
+  // Diagnostic de la page en cours (affiché dans la popup, jamais stocké).
+  const stats = { analysees: 0, masquees: 0, reglesChargees: false };
 
   /* ---------- Utilitaires sélecteurs ---------- */
 
@@ -135,8 +137,12 @@
     };
     // Carte sans titre : probablement pas une annonce, on n'y touche pas.
     if (!annonce.titre) return;
+    // Repli si l'extrait n'est pas trouvé : tout le texte visible de la carte.
+    if (!annonce.extrait) annonce.extrait = (carte.textContent || '').trim().slice(0, 1500);
 
     const resultat = D.calculerScore(annonce, regles);
+    stats.analysees++;
+    if (resultat.estEcole) stats.masquees++;
     carte.classList.add('filter-carte');
     if (resultat.estEcole) {
       carte.dataset.filter = 'ecole';
@@ -238,6 +244,15 @@
     }
   });
 
+  // La popup demande le diagnostic de la page ouverte.
+  chrome.runtime.onMessage.addListener((message, expediteur, repondre) => {
+    if (expediteur.id !== chrome.runtime.id) return false;
+    if (message && message.type === 'diagnostic') {
+      repondre({ ...stats, actif, cartesVisibles: listerCartes().size });
+    }
+    return false;
+  });
+
   /* ---------- Démarrage ---------- */
 
   async function demarrer() {
@@ -252,8 +267,10 @@
       return;
     }
     regles = D.compilerRegles(reponse.ecoles, reponse.regles);
+    stats.reglesChargees = true;
 
     traiterPage();
+    console.info('[Filter] ' + stats.analysees + ' annonce(s) analysée(s), ' + stats.masquees + ' masquée(s).');
     verifierQuestionnaire();
 
     // Scroll infini / rechargement partiel : on surveille les ajouts dans la page.

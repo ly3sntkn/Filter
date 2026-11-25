@@ -32,6 +32,8 @@ h1 { font-size: 17px; margin: 0; }
 
 .compteur { margin: 10px 0; padding: 10px; border: 1px solid var(--bord); border-radius: 8px; text-align: center; }
 .compteur strong { font-size: 20px; }
+.diagnostic { margin: 0 0 12px; font-size: 12px; color: var(--discret); }
+.diagnostic.alerte { color: #b45309; }
 fieldset { border: 1px solid var(--bord); border-radius: 8px; margin: 0 0 12px; padding: 6px 10px; }
 legend { color: var(--discret); font-size: 12px; padding: 0 4px; }
 footer a { color: var(--accent); }

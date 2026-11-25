@@ -42,4 +42,32 @@ chrome.storage.onChanged.addListener((changements, zone) => {
   if (zone === 'local' && changements.compteur) afficherCompteur(changements.compteur.newValue);
 });
 
+/*
+ * Diagnostic : demande à l'onglet actif combien d'annonces Filter y a trouvées.
+ * tabs.query sans la permission « tabs » ne donne pas l'URL : on ne lit rien de plus.
+ */
+async function diagnostiquer() {
+  const zone = document.getElementById('diagnostic');
+  try {
+    const [onglet] = await chrome.tabs.query({ active: true, currentWindow: true });
+    const d = await chrome.tabs.sendMessage(onglet.id, { type: 'diagnostic' });
+    zone.classList.remove('alerte');
+    if (!d.reglesChargees) {
+      zone.textContent = 'Règles non chargées : rechargez l’extension puis la page.';
+      zone.classList.add('alerte');
+    } else if (!d.actif) {
+      zone.textContent = 'Filtre désactivé sur cette page.';
+    } else if (d.cartesVisibles === 0) {
+      zone.textContent = 'Aucune annonce reconnue sur cette page : les sélecteurs Indeed sont à vérifier (voir README).';
+      zone.classList.add('alerte');
+    } else {
+      zone.textContent = 'Sur cette page : ' + d.analysees + ' annonce(s) analysée(s), ' + d.masquees + ' masquée(s).';
+    }
+  } catch (e) {
+    // Pas de content script dans cet onglet (pas une page Indeed, ou page ouverte avant l'installation).
+    zone.textContent = 'Ouvrez (ou rechargez) une page de résultats Indeed.';
+  }
+}
+
 initialiser();
+diagnostiquer();
