@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Filter</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <img src="../../icons/icon32.png" alt="" width="24" height="24">
+    <h1>Filter</h1>
+  </header>
+
+  <label class="ligne interrupteur">
+    <span>Filtre activé</span>
+    <input type="checkbox" id="actif" role="switch">
+    <span class="curseur" aria-hidden="true"></span>
+  </label>
+
+  <p class="compteur"><strong id="compteur">0</strong> <span id="libelle-compteur">annonce masquée</span></p>
+
+  <fieldset>
+    <legend>Annonces d'écoles</legend>
+    <label class="ligne"><input type="radio" name="mode" value="flou"> Flouter</label>
+    <label class="ligne"><input type="radio" name="mode" value="masquer"> Masquer complètement</label>
+  </fieldset>
+
+  <footer>
+    <a href="../../pages/confidentialite.html" target="_blank">Politique de confidentialité</a>
+    <p class="note">Filtrage 100 % local. Aucune donnée de navigation n'est envoyée.</p>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

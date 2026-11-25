@@ -1,0 +1,24 @@
+{
+  "_commentaire": "Noms d'écoles / organismes de formation qui publient des annonces pour recruter des étudiants. Un nom par ligne, la casse et les accents sont ignorés. Liste de départ À VÉRIFIER ET COMPLÉTER : n'y mettez que des organismes dont vous avez constaté les annonces.",
+  "noms": [
+    "ISCOD",
+    "Pigier",
+    "AFTEC",
+    "Studi",
+    "Sup de Vente",
+    "MyDigitalSchool"
+  ],
+  "_commentaire_motifs": "Mots qui, dans le NOM DE L'EMPLOYEUR, suggèrent un établissement de formation. Poids plus faible qu'un nom connu.",
+  "motifs_nom_employeur": [
+    "ecole",
+    "school",
+    "business school",
+    "campus",
+    "academy",
+    "academie",
+    "cfa",
+    "centre de formation",
+    "organisme de formation",
+    "formation"
+  ]
+}

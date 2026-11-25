@@ -1,0 +1,107 @@
+/*
+ * filtre.css — Styles ajoutés par Filter sur Indeed.
+ * Toutes les classes sont préfixées « filter- » pour ne jamais entrer en
+ * conflit avec celles d'Indeed.
+ */
+
+.filter-carte { position: relative !important; }
+
+/* ----- Mode « Flouter » (par défaut) ----- */
+.filter-ecole > :not(.filter-voile) {
+  filter: blur(6px) !important;
+  pointer-events: none !important;
+  user-select: none !important;
+}
+
+.filter-voile {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.35);
+  font: 14px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #1f2937;
+  cursor: default;
+}
+
+.filter-etiquette {
+  background: #1f2937;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.filter-btn-afficher,
+.filter-btn-signaler,
+.filter-bandeau button {
+  font: 13px/1.2 system-ui, -apple-system, "Segoe UI", sans-serif;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.filter-btn-afficher {
+  background: #fff;
+  color: #1f2937;
+  border: 1px solid #9ca3af;
+  padding: 5px 10px;
+}
+.filter-btn-afficher:hover { background: #f3f4f6; }
+
+/* ----- Mode « Masquer complètement » : la carte devient une fine barre ----- */
+html[data-filter-mode="masquer"] .filter-ecole > :not(.filter-voile) {
+  display: none !important;
+}
+html[data-filter-mode="masquer"] .filter-ecole .filter-voile {
+  position: static;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 6px 10px;
+  background: #f3f4f6;
+  border-radius: 8px;
+}
+
+/* ----- Bouton discret « Signaler » sur les annonces non floutées ----- */
+.filter-btn-signaler {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  z-index: 4;
+  background: transparent;
+  border: none;
+  color: #6b7280;
+  font-size: 11px;
+  padding: 2px 4px;
+  opacity: 0.55;
+  text-decoration: underline;
+}
+.filter-btn-signaler:hover,
+.filter-btn-signaler:focus-visible { opacity: 1; }
+
+/* ----- Bandeau d'invitation au questionnaire ----- */
+.filter-bandeau {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2147483000;
+  max-width: 320px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  padding: 12px 14px;
+  background: #fff;
+  color: #1f2937;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  font: 14px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.filter-bandeau p { margin: 0 0 4px; width: 100%; }
+.filter-bandeau-oui { background: #2557a7; color: #fff; border: none; padding: 6px 12px; }
+.filter-bandeau-non { background: #fff; color: #1f2937; border: 1px solid #9ca3af; padding: 6px 12px; }

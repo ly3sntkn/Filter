@@ -1,0 +1,64 @@
+{
+  "_commentaire": "Règles de score. Tout est comparé en minuscules et sans accents. Le seuil est volontairement haut : on préfère laisser passer une annonce d'école que flouter une vraie offre.",
+  "seuil": 6,
+
+  "poids": {
+    "nom_ecole_employeur": 6,
+    "nom_ecole_texte": 3,
+    "motif_nom_employeur": 3,
+    "entreprise_connue": -10
+  },
+
+  "_commentaire_mots_cles": "Mots-clés cherchés dans le titre et l'extrait visible de l'annonce. Un même mot-clé ne compte qu'une fois.",
+  "mots_cles": [
+    { "texte": "rejoignez notre ecole", "poids": 4 },
+    { "texte": "integrez notre ecole", "poids": 4 },
+    { "texte": "notre ecole", "poids": 3 },
+    { "texte": "nos entreprises partenaires", "poids": 3 },
+    { "texte": "entreprises partenaires", "poids": 2 },
+    { "texte": "frais de scolarite", "poids": 3 },
+    { "texte": "formation gratuite", "poids": 2 },
+    { "texte": "formation 100% financee", "poids": 2 },
+    { "texte": "titre rncp", "poids": 2 },
+    { "texte": "rentree", "poids": 2 },
+    { "texte": "inscription", "poids": 2 },
+    { "texte": "inscriptions", "poids": 2 },
+    { "texte": "admission", "poids": 2 },
+    { "texte": "admissions", "poids": 2 },
+    { "texte": "candidature a notre formation", "poids": 3 },
+    { "texte": "campus", "poids": 2 },
+    { "texte": "cursus", "poids": 1 },
+    { "texte": "ecole", "poids": 1 },
+    { "texte": "diplome", "poids": 1 },
+    { "texte": "formation", "poids": 1 }
+  ],
+
+  "_commentaire_contraires": "Signaux typiques d'un vrai employeur : ils RÉDUISENT le score.",
+  "signaux_contraires": [
+    { "texte": "notre entreprise", "poids": -2 },
+    { "texte": "notre societe", "poids": -2 },
+    { "texte": "au sein de notre equipe", "poids": -2 },
+    { "texte": "rejoindre notre equipe", "poids": -2 },
+    { "texte": "nos clients", "poids": -1 },
+    { "texte": "cdi", "poids": -3 },
+    { "texte": "cdd", "poids": -2 }
+  ],
+
+  "_commentaire_entreprises": "Employeurs connus : jamais floutés. Liste d'exemple à compléter.",
+  "entreprises_connues": [
+    "SNCF",
+    "Orange",
+    "Airbus",
+    "Decathlon",
+    "Carrefour",
+    "BNP Paribas",
+    "Société Générale",
+    "Crédit Agricole",
+    "La Poste",
+    "EDF",
+    "Engie",
+    "Thales",
+    "Capgemini",
+    "L'Oréal"
+  ]
+}

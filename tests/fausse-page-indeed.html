@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Fausse page de résultats (test)</title>
+<style>body{font-family:sans-serif;max-width:600px;margin:20px auto} li{border:1px solid #ccc;border-radius:8px;padding:12px;margin:10px 0;list-style:none}</style>
+</head><body>
+<!-- Structure IMITANT celle supposée d'Indeed (voir src/content/selecteurs.js). Sert uniquement aux tests. -->
+<div id="mosaic-provider-jobcards"><ul id="liste">
+  <li><div class="job_seen_beacon"><h2><a data-jk="a1" href="#"><span title="Alternance - Assistant commercial">Alternance - Assistant commercial</span></a></h2>
+    <span data-testid="company-name">ISCOD</span><div data-testid="jobsnippet_footer">Rentrée 2027, formation diplômante.</div></div></li>
+  <li><div class="job_seen_beacon"><h2><a data-jk="a2" href="#"><span title="Alternant contrôleur de gestion">Alternant contrôleur de gestion</span></a></h2>
+    <span data-testid="company-name">Boulangerie Martin</span><div data-testid="jobsnippet_footer">Au sein de notre équipe, vous préparerez votre diplôme.</div></div></li>
+</ul></div>
+<script>
+  // Simule le chargement dynamique : 12 annonces d'école ajoutées après 1 s.
+  setTimeout(() => {
+    const ul = document.getElementById('liste');
+    for (let i = 0; i < 12; i++) {
+      const li = document.createElement('li');
+      li.innerHTML = '<div class="job_seen_beacon"><h2><a data-jk="d' + i + '" href="#"><span title="Alternance vente ' + i + '">Alternance vente ' + i + '</span></a></h2>' +
+        '<span data-testid="company-name">Pigier</span><div data-testid="jobsnippet_footer">Inscriptions ouvertes.</div></div>';
+      ul.append(li);
+    }
+  }, 1000);
+</script>
+</body></html>

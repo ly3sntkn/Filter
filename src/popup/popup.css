@@ -1,0 +1,38 @@
+:root {
+  --fond: #ffffff;
+  --texte: #1f2937;
+  --discret: #6b7280;
+  --bord: #e5e7eb;
+  --accent: #2557a7;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --fond: #1f2937; --texte: #f3f4f6; --discret: #9ca3af; --bord: #374151; --accent: #6b9bff; }
+}
+* { box-sizing: border-box; }
+body {
+  width: 280px;
+  margin: 0;
+  padding: 14px 16px;
+  background: var(--fond);
+  color: var(--texte);
+  font: 14px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+h1 { font-size: 17px; margin: 0; }
+.ligne { display: flex; align-items: center; gap: 8px; padding: 4px 0; cursor: pointer; }
+
+/* Interrupteur ON/OFF */
+.interrupteur { justify-content: space-between; position: relative; }
+.interrupteur input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.curseur { width: 40px; height: 22px; border-radius: 999px; background: var(--bord); position: relative; transition: background .15s; }
+.curseur::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform .15s; }
+.interrupteur input:checked + .curseur { background: var(--accent); }
+.interrupteur input:checked + .curseur::after { transform: translateX(18px); }
+.interrupteur input:focus-visible + .curseur { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.compteur { margin: 10px 0; padding: 10px; border: 1px solid var(--bord); border-radius: 8px; text-align: center; }
+.compteur strong { font-size: 20px; }
+fieldset { border: 1px solid var(--bord); border-radius: 8px; margin: 0 0 12px; padding: 6px 10px; }
+legend { color: var(--discret); font-size: 12px; padding: 0 4px; }
+footer a { color: var(--accent); }
+.note { color: var(--discret); font-size: 12px; margin: 6px 0 0; }

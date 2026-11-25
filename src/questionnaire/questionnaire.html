@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>Filter : questionnaire</title>
+  <link rel="stylesheet" href="questionnaire.css">
+</head>
+<body>
+  <main>
+    <h1>3 questions, c'est facultatif</h1>
+    <p class="intro">Réponses anonymes, utilisées uniquement pour des statistiques agrégées.</p>
+
+    <form id="formulaire" novalidate>
+      <label for="annee_etudes">Année d'études</label>
+      <select id="annee_etudes" name="annee_etudes" required></select>
+
+      <label for="domaine">Domaine</label>
+      <select id="domaine" name="domaine" required></select>
+
+      <label for="region">Région</label>
+      <select id="region" name="region" required></select>
+
+      <p class="detail">Seuls ces 3 choix et le mois en cours (ex. 2026-11) sont envoyés.
+        Aucun identifiant, aucune date précise, aucune donnée de navigation.</p>
+
+      <div class="actions">
+        <button type="button" id="passer" class="secondaire">Passer</button>
+        <button type="submit" id="envoyer">Envoyer</button>
+      </div>
+      <p id="message" role="status"></p>
+    </form>
+  </main>
+
+  <script src="../shared/config.js"></script>
+  <script src="../shared/valeurs-questionnaire.js"></script>
+  <script src="questionnaire.js"></script>
+</body>
+</html>

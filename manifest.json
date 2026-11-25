@@ -4,33 +4,45 @@
   "version": "0.1.0",
   "description": "Floute les annonces d'écoles et d'organismes de formation dans les résultats Indeed. Filtrage 100 % local.",
   "minimum_chrome_version": "111",
-
-  "permissions": ["storage"],
-
+  "permissions": [
+    "storage"
+  ],
   "background": {
     "service_worker": "src/background/service-worker.js"
   },
-
   "content_scripts": [
     {
-      "matches": ["https://fr.indeed.com/*"],
+      "matches": [
+        "https://fr.indeed.com/*",
+        "https://www.indeed.fr/*"
+      ],
       "js": [
         "src/content/selecteurs.js",
         "src/content/detection.js",
         "src/content/filtre.js"
       ],
-      "css": ["src/content/filtre.css"],
+      "css": [
+        "src/content/filtre.css"
+      ],
       "run_at": "document_idle",
       "all_frames": false
     }
   ],
-
   "action": {
     "default_popup": "src/popup/popup.html",
-    "default_title": "Filter"
+    "default_title": "Filter",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
   },
-
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'self' https://filter-api.example.workers.dev"
+    "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'self' https://*.supabase.co"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   }
 }
