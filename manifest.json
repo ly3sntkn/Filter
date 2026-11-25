@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Filter",
+  "version": "0.1.0",
+  "description": "Floute les annonces d'écoles et d'organismes de formation dans les résultats Indeed. Filtrage 100 % local.",
+  "minimum_chrome_version": "111",
+
+  "permissions": ["storage"],
+
+  "background": {
+    "service_worker": "src/background/service-worker.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://fr.indeed.com/*"],
+      "js": [
+        "src/content/selecteurs.js",
+        "src/content/detection.js",
+        "src/content/filtre.js"
+      ],
+      "css": ["src/content/filtre.css"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "Filter"
+  },
+
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'self' https://filter-api.example.workers.dev"
+  }
+}
